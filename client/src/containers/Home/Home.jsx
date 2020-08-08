@@ -1,11 +1,13 @@
 import React from 'react';
-import Form from "../Form/Form"
+// import Form from "../Form/Form"
+import ResultCard from "../ResultCard/ResultCard"
 
 
 const Home = () => {
     return (
         <div>
-            <Form/>
+            {/* <Form/> */}
+            <ResultCard/>
         </div>
     );
 }
