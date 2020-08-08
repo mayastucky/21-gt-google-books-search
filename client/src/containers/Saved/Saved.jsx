@@ -8,15 +8,16 @@ class Saved extends Component {
   };
 
   componentDidMount() {
-    this.getBooks();
+    this.getSavedBooks();
   }
 
-  getBooks = () => {
-    API.getBook().then((res) => {
+  getSavedBooks = () => {
+    API.savedBooks().then((res) => {
       this.setState({ saved: res.data });
     });
   };
   render() {
+    console.log("These are my saved books", this.state.saved)
     return (
       // <div>
       //   {this.state.saved.map((savedBooks) => (
