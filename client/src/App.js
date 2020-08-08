@@ -5,6 +5,7 @@ import Home from "./containers/Home/Home";
 import NoMatch from "./containers/NoMatch/NoMatch";
 import Header from "./containers/Header/Header";
 import NavBar from "./containers/NavBar/NavBar";
+import Saved from "./containers/Saved/Saved"
 // import NavBar from "./containers/NavBar/"
 
 function App() {
@@ -20,11 +21,12 @@ function App() {
   }, []);
   return (
     <div>
+      <NavBar />
       <Header />
-      <NavBar/>
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/saved" component={Saved}/>
           <Route component={NoMatch} />
         </Switch>
       </Router>
