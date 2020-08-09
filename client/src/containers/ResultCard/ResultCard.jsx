@@ -19,6 +19,7 @@ class ResultCard extends Component {
     API.saveBook(id)
       .then((response) => {
         this.setState({ savedBooks: this.state.savedBooks.concat([response]) });
+        console.log("this is my saved book", this.state.savedBooks)
       })
       .catch((err) => {
         console.log(err);
