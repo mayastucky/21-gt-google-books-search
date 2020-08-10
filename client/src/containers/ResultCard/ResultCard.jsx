@@ -51,27 +51,27 @@ class ResultCard extends Component {
           </div>
         </form>
         {this.state.books.map((book) => (
-          <div class="card mb-3">
-            <div class="row no-gutters">
-              <div class="col-md-4">
+          <div className="card mb-3">
+            <div className="row no-gutters">
+              <div className="col-md-4">
                 {/* how to get thumbnails when they don't have them  */}
                 {/* <img src={book.volumeInfo.imageLinks.smallThumbnail || "https://f0.pngfuel.com/png/137/448/black-book-logo-png-clip-art-thumbnail.png"} class="card-img" alt={book.volumeInfo.title} width="10px" height="300px" /> */}
               </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">{book.volumeInfo.title}</h5>
-                  <p class="card-text">{book.volumeInfo.authors} </p>
-                  <p class="card-text">{book.volumeInfo.description}</p>
+              <div className="col-md-8">
+                <div className="card-body">
+                  <h5 className="card-title">{book.volumeInfo.title}</h5>
+                  <p className="card-text">{book.volumeInfo.authors} </p>
+                  <p className="card-text">{book.volumeInfo.description}</p>
                   <button
                     type="button"
-                    class="btn btn-primary"
+                    className="btn btn-primary"
                     style={{ marginBottom: "10px" }}
                     onClick={() => this.handleSave(book._id)}
                   >
                     Save
                   </button>
                   <br></br>
-                  <button type="button" class="btn btn-primary">
+                  <button type="button" className="btn btn-primary">
                     <a
                       href={book.volumeInfo.infoLink}
                       style={{ color: "white" }}
