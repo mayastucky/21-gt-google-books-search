@@ -15,11 +15,11 @@ class ResultCard extends Component {
   };
 
   //save button doesn't work
-  handleSave = (id) => {
-    API.saveBook(id)
+  handleSave = (bookInfo) => {
+    API.saveBook(bookInfo)
       .then((response) => {
         this.setState({ savedBooks: this.state.savedBooks.concat([response]) });
-        console.log("this is my saved book", this.state.savedBooks)
+        console.log("this is my saved book", this.state.savedBooks);
       })
       .catch((err) => {
         console.log(err);
@@ -27,6 +27,9 @@ class ResultCard extends Component {
   };
 
   render() {
+    // if(book.volumeInfo.imageLinks.smallThumbnail === "undefined"){
+    //   let imageSource = "https://f0.pngfuel.com/png/137/448/black-book-logo-png-clip-art-thumbnail.png"
+    // }
     console.log(this.state.books);
     return (
       <div>
@@ -34,7 +37,7 @@ class ResultCard extends Component {
           <label
             htmlFor="inputPassword"
             className="col-sm-2 col-form-label"
-            style={{ marginLeft: "40%" }}
+            style={{ marginLeft: "45%" }}
           >
             Search for a Book
           </label>
@@ -45,7 +48,7 @@ class ResultCard extends Component {
                 className="form-control"
                 name="search"
                 onChange={this.handleSearch}
-                style={{ justifyContent: "center", marginLeft: "15%" }}
+                style={{ justifyContent: "center", marginLeft: "30%" }}
               />
             </div>
           </div>
@@ -54,8 +57,16 @@ class ResultCard extends Component {
           <div className="card mb-3">
             <div className="row no-gutters">
               <div className="col-md-4">
-                {/* how to get thumbnails when they don't have them  */}
-                {/* <img src={book.volumeInfo.imageLinks.smallThumbnail || "https://f0.pngfuel.com/png/137/448/black-book-logo-png-clip-art-thumbnail.png"} class="card-img" alt={book.volumeInfo.title} width="10px" height="300px" /> */}
+                <img
+                  src={
+                    (book.volumeInfo.imageLinks &&
+                      book.volumeInfo.imageLinks.smallThumbnail) ||
+                    "https://f0.pngfuel.com/png/137/448/black-book-logo-png-clip-art-thumbnail.png"
+                  }
+                  alt={book.volumeInfo.title}
+                  width="300"
+                  style={{ marginLeft: "50px" }}
+                />
               </div>
               <div className="col-md-8">
                 <div className="card-body">
@@ -66,7 +77,13 @@ class ResultCard extends Component {
                     type="button"
                     className="btn btn-primary"
                     style={{ marginBottom: "10px" }}
-                    onClick={() => this.handleSave(book._id)}
+                    onClick={() => this.handleSave({
+                      title: book.volumeInfo.title, 
+                      authors: book.volumeInfo.authors, 
+                      description: book.volumeInfo.description, 
+                      image : book.volumeInfo.imageLinks.smallThumbnail, 
+                      link: book.volumeInfo.infoLink
+                    })}
                   >
                     Save
                   </button>
