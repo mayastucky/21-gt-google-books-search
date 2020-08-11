@@ -18,6 +18,7 @@ class ResultCard extends Component {
   handleSave = (bookInfo) => {
     API.saveBook(bookInfo)
       .then((response) => {
+        alert("Your book has been saved.")
         this.setState({ savedBooks: this.state.savedBooks.concat([response]) });
         console.log("this is my saved book", this.state.savedBooks);
       })

@@ -18,18 +18,22 @@ class Saved extends Component {
   };
 
   handleDelete = (id) => {
-    API.deleteBook(id).then((response) => {
-      console.log(response);
-      this.setState({
-        saved: this.state.saved.filter((notDeleted) => {
-          if (id === notDeleted._id) {
-            return false;
-          } else {
-            return true;
-          }
-        }),
+    const confirmation = window.confirm("Are you sure you want to delete this book?")
+    if (confirmation){
+      API.deleteBook(id).then((response) => {
+        console.log(response);
+        this.setState({
+          saved: this.state.saved.filter((notDeleted) => {
+            if (id === notDeleted._id) {
+              return false;
+            } else {
+              return true;
+            }
+          }),
+        });
       });
-    });
+    }
+
   };
   render() {
     return (
