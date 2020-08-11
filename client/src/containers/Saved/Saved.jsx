@@ -18,41 +18,50 @@ class Saved extends Component {
   };
 
   handleDelete = (id) => {
-    API.deleteBook(id)
-    .then((response) => {
-      console.log(response)
-      this.setState({saved: this.state.saved.filter((notDeleted) => {
-        if(id === notDeleted._id){
-          return false;
-        }else{
-          return true; 
-        }
-      })})
-    })
-  }
+    API.deleteBook(id).then((response) => {
+      console.log(response);
+      this.setState({
+        saved: this.state.saved.filter((notDeleted) => {
+          if (id === notDeleted._id) {
+            return false;
+          } else {
+            return true;
+          }
+        }),
+      });
+    });
+  };
   render() {
     return (
       <div>
         {this.state.saved.map((savedBooks) => (
-          <div class="card mb-3">
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                {/* how to get thumbnails when they don't have them  */}
-                {/* <img src={book.volumeInfo.imageLinks.thumbnail || "https://f0.pngfuel.com/png/137/448/black-book-logo-png-clip-art-thumbnail.png"} class="card-img" alt={book.volumeInfo.title} /> */}
+          <div className="card mb-3">
+            <div className="row no-gutters">
+              <div className="col-md-4">
+                <img
+                  src={savedBooks.image}
+                  alt={savedBooks.title}
+                  width="300"
+                  style={{ marginLeft: "50px" }}
+                />
               </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">{savedBooks.title}</h5>
-                  <p class="card-text">{savedBooks.authors} </p>
-                  <p class="card-text">{savedBooks.description}</p>
-                  <button type="button" class="btn btn-primary" onClick={() => this.handleDelete(savedBooks._id)}>
+              <div className="col-md-8">
+                <div className="card-body">
+                  <h5 className="card-title">{savedBooks.title}</h5>
+                  <p className="card-text">{savedBooks.authors} </p>
+                  <p className="card-text">{savedBooks.description}</p>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={() => this.handleDelete(savedBooks._id)}
+                    style={{marginBottom: "10px"}}
+                  >
                     Delete
                   </button>
-                  <button type="button" class="btn btn-primary">
-                    <a
-                      href={savedBooks.infoLink}
-                      style={{ color: "white" }}
-                    >
+                  <br>
+                  </br>
+                  <button type="button" className="btn btn-primary">
+                    <a href={savedBooks.infoLink} style={{ color: "white" }}>
                       View
                     </a>
                   </button>
